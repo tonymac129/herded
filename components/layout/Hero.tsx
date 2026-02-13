@@ -8,7 +8,7 @@ type HeroProps = {
 
 function Hero({ title, description, homepage }: HeroProps) {
   return (
-    <div className="flex flex-col gap-y-10 py-15 items-center w-[50%] m-auto text-center">
+    <div className="flex flex-col gap-y-10 py-15 items-center w-[70%] m-auto text-center">
       <h1 className="text-black text-5xl font-bold">{title}</h1>
       <p className="text-gray-800 text-lg">{description}</p>
       {homepage && (
