@@ -6,7 +6,7 @@ const navLinkStyles =
 
 function Nav() {
   return (
-    <nav className="border-2 border-gray-800 rounded-lg sticky top-2 max-w-280 w-[80%] m-auto py-2 px-10 flex justify-between items-center">
+    <nav className="border-2 border-gray-800 rounded-lg sticky top-2 bg-gray-200 z-10 max-w-280 w-[80%] m-auto py-2 px-10 flex justify-between items-center">
       <Link href="/" className="text-2xl font-bold">
         Herded
       </Link>
