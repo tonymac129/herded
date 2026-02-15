@@ -4,6 +4,10 @@
   --font-neon: var(--font-tilt-neon);
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   @apply font-neon bg-gray-200;
 }
