@@ -11,4 +11,5 @@ export type QuizType = {
   questions: QuestionType[];
   createdBy: string;
   createdAt: string;
+  public: boolean;
 };

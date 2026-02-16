@@ -12,7 +12,10 @@ async function Nav() {
 
   return (
     <div className="sticky top-2 z-10">
-      <nav className="border-2 border-gray-800 rounded-lg bg-gray-200 max-w-280 w-[80%] m-auto py-2 relative flex justify-center items-center">
+      <nav
+        className="border-2 border-gray-800 rounded-lg bg-gray-200 max-w-280 w-[80%] m-auto py-2 relative flex justify-center
+      items-center"
+      >
         <Link href="/" className="text-2xl font-bold absolute left-10">
           Herded
         </Link>
@@ -48,7 +51,9 @@ async function Nav() {
             <Btn text="Create" link="/create" primary />
           </div>
         ) : (
-          <Btn text="Sign in" link="/signin" primary />
+          <div className="flex gap-x-3 absolute right-10">
+            <Btn text="Sign in" link="/signin" primary />
+          </div>
         )}
       </nav>
     </div>

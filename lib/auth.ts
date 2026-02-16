@@ -1,4 +1,6 @@
 import { NextAuthOptions } from "next-auth";
+import { dbConnect } from "./db";
+import { User } from "@/models/User";
 import Google from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
@@ -23,6 +25,23 @@ export const authOptions: NextAuthOptions = {
         user.id = token.id as string;
       }
       return session;
+    },
+    async signIn({ user }) {
+      await dbConnect();
+      const existingUser = await User.findOne({ email: user.email });
+      if (!existingUser) {
+        await User.create({
+          email: user.email,
+          name: user.name,
+          image: user.image,
+          quizzes: [],
+        });
+      } else {
+        await User.findOneAndUpdate(existingUser._id, {
+          image: user.image,
+        });
+      }
+      return true;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
