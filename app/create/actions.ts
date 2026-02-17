@@ -19,12 +19,11 @@ export async function createQuiz(
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         const newQuizzes = [...existingUser.quizzes, quiz.id];
-        const newUser = await User.findOneAndUpdate(
+        await User.findOneAndUpdate(
           { email },
           { quizzes: newQuizzes },
           { new: true },
         );
-        console.log(newUser);
       }
       return { success: true, message: "Quiz created successfully" };
     }

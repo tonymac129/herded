@@ -3,6 +3,7 @@
 import type { QuizType } from "@/types/Quiz";
 import { FaTrash } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { defaultOption } from "./Create";
 import Btn from "@/components/ui/Btn";
 
 const inputStyles = "border-2 border-gray-800 bg-gray-300 rounded-lg px-4 py-2";
@@ -69,12 +70,12 @@ function Quiz({ quiz, setQuiz }: QuizProps) {
                           ? "Inhaling cat fart"
                           : "Stepping on throwup barefoot"
                       }
-                      value={question.options[option]}
+                      value={question.options[option].text}
                       onChange={(e) => {
                         const newQuestions = [...quiz.questions];
                         newQuestions.find((q) => q.id === question.id)!.options[
                           option
-                        ] = e.target.value;
+                        ].text = e.target.value;
                         setQuiz({ ...quiz, questions: newQuestions });
                       }}
                       className={inputStyles}
@@ -94,7 +95,7 @@ function Quiz({ quiz, setQuiz }: QuizProps) {
             newQuestions.push({
               id: crypto.randomUUID(),
               question: "",
-              options: ["", ""],
+              options: [{ ...defaultOption }, { ...defaultOption }],
             });
             setQuiz({ ...quiz, questions: newQuestions });
           }}

@@ -1,6 +1,6 @@
 "use client";
 
-import type { QuizType } from "@/types/Quiz";
+import type { OptionType, QuizType } from "@/types/Quiz";
 import type { ActionResponseType } from "@/types/Global";
 import type { Session } from "next-auth";
 import { useState } from "react";
@@ -10,11 +10,19 @@ import Info from "./Info";
 import Quiz from "./Quiz";
 import Submit from "./Submit";
 
+export const defaultOption: OptionType = { text: "", votes: 0 };
+
 const defaultQuiz: QuizType = {
   id: crypto.randomUUID(),
   name: "",
   description: "",
-  questions: [{ id: crypto.randomUUID(), question: "", options: ["", ""] }],
+  questions: [
+    {
+      id: crypto.randomUUID(),
+      question: "",
+      options: [{ ...defaultOption }, { ...defaultOption }],
+    },
+  ],
   createdBy: "tony",
   createdAt: new Date().toISOString().slice(0, 10),
   public: true,
@@ -37,19 +45,19 @@ function Create({ createQuiz, user }: CreateProps) {
   });
   const [error, setError] = useState<string | null>(null);
   const showNextBtn =
-    (index === 0 && quiz.name && quiz.description) ||
+    (index === 0 && quiz.name.trim().length > 0) ||
     (index === 1 &&
       quiz.questions.length > 0 &&
       quiz.questions.every(
         (question) =>
           question.question.trim().length > 0 &&
-          question.options.every((option) => option.trim().length > 0),
+          question.options.every((option) => option.text.trim().length > 0),
       ));
 
   async function handleSubmit() {
     const response = await createQuiz(quiz.id, quiz, quiz.createdBy);
     if (!response.error) {
-      redirect("/");
+      redirect("/q/" + quiz.id);
     } else {
       setError(response.error);
     }
