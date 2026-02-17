@@ -15,6 +15,7 @@ export async function createQuiz(
     await dbConnect();
     const existingQuiz = await Quiz.findOne({ id });
     if (!existingQuiz) {
+      console.log(quiz);
       await Quiz.create(quiz);
       const existingUser = await User.findOne({ email });
       if (existingUser) {

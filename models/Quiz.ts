@@ -1,5 +1,13 @@
 import { Schema, models, model } from "mongoose";
 
+const CommentSchema = new Schema({
+  id: { type: String, required: true },
+  user: { type: String, required: true },
+  trait: { type: String, required: true },
+  text: { type: String, required: true },
+  createdAt: { type: String, required: true },
+});
+
 const OptionSchema = new Schema({
   text: { type: String, required: true },
   votes: { type: Number, default: 0 },
@@ -19,6 +27,7 @@ const QuizSchema = new Schema({
   createdBy: { type: String, required: true },
   createdAt: { type: String, required: true },
   public: { type: Boolean, required: true },
+  comments: { type: [CommentSchema], default: [] },
 });
 
 export const Quiz = models.Quiz || model("Quiz", QuizSchema);

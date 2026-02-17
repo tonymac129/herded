@@ -26,6 +26,7 @@ const defaultQuiz: QuizType = {
   createdBy: "tony",
   createdAt: new Date().toISOString().slice(0, 10),
   public: true,
+  comments: [],
 };
 
 type CreateProps = {

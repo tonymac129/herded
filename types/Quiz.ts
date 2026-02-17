@@ -1,3 +1,11 @@
+export type CommentType = {
+  id: string;
+  user: string;
+  trait: "white sheep" | "gray sheep" | "black sheep";
+  text: string;
+  createdAt: string;
+};
+
 export type OptionType = {
   text: string;
   votes: number;
@@ -17,4 +25,5 @@ export type QuizType = {
   createdBy: string;
   createdAt: string;
   public: boolean;
+  comments: CommentType[];
 };
