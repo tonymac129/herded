@@ -1,7 +1,7 @@
 "use client";
 
 import type { QuizType } from "@/types/Quiz";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Btn from "@/components/ui/Btn";
 import Link from "next/link";
 import Option from "./Option";
@@ -11,10 +11,51 @@ type QuizPageProps = {
   voteOption: (id: string, index: number, option: number) => Promise<void>;
 };
 
+type TraitType = {
+  text: string;
+  description: string;
+};
+
 function QuizPage({ existingQuiz, voteOption }: QuizPageProps) {
   const [quiz, setQuiz] = useState(existingQuiz);
   const [index, setIndex] = useState<number>(0);
   const [selected, setSelected] = useState<number[]>([]);
+  const [majority, setMajority] = useState<boolean[]>([]);
+  const herdedness = useMemo<number>(
+    () =>
+      Math.round(
+        (majority.reduce((acc, q) => {
+          if (q) {
+            acc++;
+          }
+          return acc;
+        }, 0) /
+          majority.length) *
+          100,
+      ),
+    [majority],
+  );
+  const trait = useMemo<TraitType>(() => {
+    if (herdedness > 67) {
+      return {
+        text: "white sheep",
+        description:
+          "Let's face it, you are a slave to the algorithm. You side with whatever's most socially acceptable without thinking.",
+      };
+    } else if (herdedness > 33) {
+      return {
+        text: "gray sheep",
+        description:
+          "You are a glitch in the collective internet mind. You're kinda boring, but at least you have your own opinions.",
+      };
+    } else {
+      return {
+        text: "black sheep",
+        description:
+          "While other people are obsessing over TikTok trends, you're out here trying too hard to be unique for no reason.",
+      };
+    }
+  }, [herdedness]);
 
   async function handleChoose(option: number) {
     if (selected[index - 1] % 1 !== 0) {
@@ -25,6 +66,11 @@ function QuizPage({ existingQuiz, voteOption }: QuizPageProps) {
       newQuestions[index - 1].options[option].votes++;
       await voteOption(quiz.id, index - 1, option);
       setQuiz({ ...quiz, questions: newQuestions });
+      const newMajority = [...majority];
+      newMajority[index - 1] =
+        newQuestions[index - 1].options[option].votes >
+        newQuestions[index - 1].options[(option + 1) % 2].votes;
+      setMajority(newMajority);
     }
   }
 
@@ -84,10 +130,15 @@ function QuizPage({ existingQuiz, voteOption }: QuizPageProps) {
       {index !== 0 && index === quiz.questions.length + 1 && (
         <div className="flex flex-col gap-y-5 w-full items-center">
           <h2 className="text-black font-bold text-2xl">
-            Your trait: white sheep
+            Your trait: {trait.text}
           </h2>
-          <h2 className="text-black font-bold text-2xl">Herdedness: 67%</h2>
-          <div>You sided with the majority on 67% of the questions.</div>
+          <h2 className="text-black font-bold text-2xl">
+            Herdedness: {herdedness}%
+          </h2>
+          <div>
+            You sided with the majority on {herdedness}% of the questions.
+          </div>
+          <div>{trait.description}</div>
           <div className="text-sm">
             Liked the quiz?{" "}
             <Link href="/create" className="underline">
