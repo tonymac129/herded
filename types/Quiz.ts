@@ -26,4 +26,5 @@ export type QuizType = {
   createdAt: string;
   public: boolean;
   comments: CommentType[];
+  plays: number;
 };

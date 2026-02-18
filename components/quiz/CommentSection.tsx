@@ -25,7 +25,7 @@ function CommentSection({
       </label>
       <label className="flex flex-col gap-y-1 w-full font-bold text-xl text-left">
         <textarea
-          placeholder="Yo, who made this quiz, why is it so peak? Bro imagine not being a black ship"
+          placeholder="Yo, who made this quiz, why is it so peak? Bro imagine not being a black sheep"
           value={comment.text}
           onChange={(e) => setComment({ ...comment, text: e.target.value })}
           className="border-2 border-gray-800 bg-gray-300 rounded-lg px-4 py-2 text-base font-normal resize-none"

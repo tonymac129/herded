@@ -2,7 +2,7 @@ import type { QuizType } from "@/types/Quiz";
 import { dbConnect } from "@/lib/db";
 import { Quiz } from "@/models/Quiz";
 import { notFound } from "next/navigation";
-import { voteOption, addComment } from "./actions";
+import { voteOption, addComment, playOnce } from "./actions";
 import QuizPage from "./QuizPage";
 
 async function Page({ params }: { params: { id: string } }) {
@@ -17,6 +17,7 @@ async function Page({ params }: { params: { id: string } }) {
       existingQuiz={cleanQuiz}
       voteOption={voteOption}
       addComment={addComment}
+      playOnce={playOnce}
     />
   );
 }

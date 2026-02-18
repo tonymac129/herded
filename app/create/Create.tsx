@@ -23,10 +23,11 @@ const defaultQuiz: QuizType = {
       options: [{ ...defaultOption }, { ...defaultOption }],
     },
   ],
-  createdBy: "tony",
+  createdBy: "",
   createdAt: new Date().toISOString().slice(0, 10),
   public: true,
   comments: [],
+  plays: 0,
 };
 
 type CreateProps = {

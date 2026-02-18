@@ -28,6 +28,7 @@ const QuizSchema = new Schema({
   createdAt: { type: String, required: true },
   public: { type: Boolean, required: true },
   comments: { type: [CommentSchema], default: [] },
+  plays: { type: Number, default: 0 },
 });
 
 export const Quiz = models.Quiz || model("Quiz", QuizSchema);

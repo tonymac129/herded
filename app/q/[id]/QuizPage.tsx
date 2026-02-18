@@ -20,6 +20,7 @@ type QuizPageProps = {
   existingQuiz: QuizType;
   voteOption: (id: string, index: number, option: number) => Promise<void>;
   addComment: (id: string, comment: CommentType) => Promise<void>;
+  playOnce: (id: string) => Promise<void>;
 };
 
 type TraitType = {
@@ -27,7 +28,12 @@ type TraitType = {
   description: string;
 };
 
-function QuizPage({ existingQuiz, voteOption, addComment }: QuizPageProps) {
+function QuizPage({
+  existingQuiz,
+  voteOption,
+  addComment,
+  playOnce,
+}: QuizPageProps) {
   const [quiz, setQuiz] = useState(existingQuiz);
   const [index, setIndex] = useState<number>(0);
   const [selected, setSelected] = useState<number[]>([]);
@@ -78,6 +84,11 @@ function QuizPage({ existingQuiz, voteOption, addComment }: QuizPageProps) {
     setQuiz(existingQuiz);
   }, [existingQuiz]);
 
+  async function handleStart() {
+    setIndex((prev) => prev + 1);
+    await playOnce(quiz.id);
+  }
+
   async function handleChoose(option: number) {
     if (selected[index - 1] % 1 !== 0) {
       const newSelected = [...selected];
@@ -109,6 +120,7 @@ function QuizPage({ existingQuiz, voteOption, addComment }: QuizPageProps) {
           <>
             <div className="flex flex-col gap-y-2">
               <h2 className="text-black font-bold text-2xl">{quiz.name}</h2>
+              <div className="text-sm">Total plays: {quiz.plays}</div>
               <div className="text-sm">Created by: {quiz.createdBy}</div>
               {quiz.description && <div>{quiz.description}</div>}
             </div>
@@ -116,17 +128,14 @@ function QuizPage({ existingQuiz, voteOption, addComment }: QuizPageProps) {
               Do you have herd mentality? Click the button below to start the
               quiz!
             </div>
-            <Btn
-              text="Start quiz"
-              onclick={() => setIndex((prev) => prev + 1)}
-              primary
-            />
+            <Btn text="Start quiz" onclick={handleStart} primary />
           </>
         )}
         {index !== 0 && index !== quiz.questions.length + 1 && (
           <div className="flex flex-col gap-y-5 w-full text-left">
             <h2 className="text-black font-bold text-lg">
-              Question #{index}: {quiz.questions[index - 1].question}
+              Question #{index}:<br />
+              {quiz.questions[index - 1].question}
             </h2>
             <div className="flex gap-x-5 mb-10">
               <Option

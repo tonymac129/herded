@@ -38,3 +38,20 @@ export async function addComment(id: string, comment: CommentType) {
     console.error("Error: " + err);
   }
 }
+
+export async function playOnce(id: string) {
+  try {
+    await dbConnect();
+    const existingQuiz: QuizType = await Quiz.findOne({ id }).lean();
+    if (existingQuiz) {
+      await Quiz.findOneAndUpdate(
+        { id },
+        { plays: existingQuiz.plays + 1 },
+        { new: true },
+      );
+      revalidatePath("/q/" + id);
+    }
+  } catch (err) {
+    console.error("Error: " + err);
+  }
+}
