@@ -23,9 +23,6 @@ async function Nav() {
           <Link href="/" className={navLinkStyles}>
             Home
           </Link>
-          <Link href="/dashboard" className={navLinkStyles}>
-            Dashboard
-          </Link>
           <Link href="/quizzes" className={navLinkStyles}>
             Quizzes
           </Link>
