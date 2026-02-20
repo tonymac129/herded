@@ -3,7 +3,7 @@
 import type { OptionType, QuizType } from "@/types/Quiz";
 import type { ActionResponseType } from "@/types/Global";
 import type { Session } from "next-auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import Btn from "@/components/ui/Btn";
 import Info from "./Info";
@@ -12,22 +12,24 @@ import Submit from "./Submit";
 
 export const defaultOption: OptionType = { text: "", votes: 0 };
 
-const defaultQuiz: QuizType = {
-  id: crypto.randomUUID(),
-  name: "",
-  description: "",
-  questions: [
-    {
-      id: crypto.randomUUID(),
-      question: "",
-      options: [{ ...defaultOption }, { ...defaultOption }],
-    },
-  ],
-  createdBy: "",
-  createdAt: new Date().toISOString().slice(0, 10),
-  public: true,
-  comments: [],
-  plays: 0,
+const defaultQuiz = (email: string): QuizType => {
+  return {
+    id: crypto.randomUUID(),
+    name: "",
+    description: "",
+    questions: [
+      {
+        id: crypto.randomUUID(),
+        question: "",
+        options: [{ ...defaultOption }, { ...defaultOption }],
+      },
+    ],
+    createdBy: email,
+    createdAt: new Date().toISOString().slice(0, 10),
+    public: true,
+    comments: [],
+    plays: 0,
+  };
 };
 
 type CreateProps = {
@@ -41,10 +43,7 @@ type CreateProps = {
 
 function Create({ createQuiz, user }: CreateProps) {
   const [index, setIndex] = useState<number>(0);
-  const [quiz, setQuiz] = useState<QuizType>({
-    ...defaultQuiz,
-    createdBy: user!.email!,
-  });
+  const [quiz, setQuiz] = useState<QuizType>(defaultQuiz(user!.email!));
   const [error, setError] = useState<string | null>(null);
   const showNextBtn =
     (index === 0 && quiz.name.trim().length > 0) ||
@@ -55,6 +54,10 @@ function Create({ createQuiz, user }: CreateProps) {
           question.question.trim().length > 0 &&
           question.options.every((option) => option.text.trim().length > 0),
       ));
+
+  useEffect(() => {
+    setQuiz(defaultQuiz(user!.email!));
+  }, [user]);
 
   async function handleSubmit() {
     const response = await createQuiz(quiz.id, quiz, quiz.createdBy);

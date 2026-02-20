@@ -2,12 +2,17 @@ import { NextAuthOptions } from "next-auth";
 import { dbConnect } from "./db";
 import { User } from "@/models/User";
 import Google from "next-auth/providers/google";
+import Github from "next-auth/providers/github";
 
 export const authOptions: NextAuthOptions = {
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    }),
+    Github({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
     }),
   ],
   session: { strategy: "jwt" },
