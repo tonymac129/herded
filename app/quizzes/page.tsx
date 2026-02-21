@@ -3,6 +3,7 @@ import { dbConnect } from "@/lib/db";
 import { Quiz } from "@/models/Quiz";
 import Hero from "@/components/layout/Hero";
 import QuizCard from "@/components/ui/QuizCard";
+import QuizSearch from "./QuizSearch";
 
 const quizzesStyles = "flex flex-wrap justify-center py-10 gap-5";
 
@@ -17,13 +18,14 @@ async function Page() {
         title="Quizzes"
         description="Browse all the most popular fun public quizzes on Herded created by other users. To get your quiz on this page, make it public and share it with other people!"
       />
+      <QuizSearch quizzes={quizzes} />
       <h2 className="text-2xl font-bold text-black text-center">
         Most popular quizzes
       </h2>
       <div className={quizzesStyles}>
         {quizzes
           .sort((a, b) => b.plays - a.plays)
-          .slice(0, 10)
+          .slice(0, 4)
           .map((quiz) => {
             return <QuizCard key={quiz.id} quiz={quiz} showOwner />;
           })}
@@ -37,6 +39,7 @@ async function Page() {
             (a, b) =>
               new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
           )
+          .slice(0, 4)
           .map((quiz) => {
             return <QuizCard key={quiz.id} quiz={quiz} showOwner />;
           })}

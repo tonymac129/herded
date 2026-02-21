@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Tilt_Neon } from "next/font/google";
 import Nav from "@/components/layout/Nav";
+import Footer from "@/components/layout/Footer";
 import Animate from "@/components/layout/Animate";
 import "./globals.css";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={`${tiltNeon.variable} antialiased`}>
         <Nav />
         <Animate>{children}</Animate>
+        <Footer />
       </body>
     </html>
   );

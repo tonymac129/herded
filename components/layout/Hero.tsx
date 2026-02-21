@@ -14,7 +14,7 @@ function Hero({ title, description, homepage }: HeroProps) {
       {homepage && (
         <div className="flex gap-x-5">
           <Btn text="Try now" link="/signin" primary />
-          <Btn text="Learn more" link="" />
+          <Btn text="Learn more" link="/about" />
         </div>
       )}
     </div>
