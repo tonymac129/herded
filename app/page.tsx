@@ -20,7 +20,7 @@ export default async function Home() {
         description="Herded is a would you rather quiz platform where you can create custom interactive would you rather quizzes or take fun public quizzes other people created!"
         homepage
       />
-      <div className="flex gap-x-5 mb-5 w-[80%] m-auto">
+      <div className="flex gap-5 mb-5 w-[95%] sm:w-[80%] m-auto flex-wrap">
         <Section
           heading="Easily Create Custom Quizzes"
           description="Create fun, interactive, and completely customized would you rather quizzes with ease"
@@ -35,7 +35,7 @@ export default async function Home() {
           <FaShareSquare size={30} className="w-15" />
         </Section>
       </div>
-      <div className="flex gap-x-5 w-[80%] m-auto">
+      <div className="flex gap-5 w-[95%] sm:w-[80%] m-auto flex-wrap">
         <Section
           heading="Automatic Cloud Sync"
           description="All your quizzes and data are automatically saved to the cloud"

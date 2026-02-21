@@ -12,7 +12,7 @@ type InfoProps = {
 
 function Info({ quiz, setQuiz }: InfoProps) {
   return (
-    <div className="py-10 w-150 m-auto flex flex-col gap-y-5">
+    <div className="py-10 w-[95%] md:w-[80%] m-auto flex flex-col gap-y-5">
       <h2 className="text-2xl font-bold text-center mb-3">
         1. Tell us a bit about your quiz
       </h2>

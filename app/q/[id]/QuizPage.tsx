@@ -113,9 +113,14 @@ function QuizPage({
     });
   }
 
+  function handleShare() {
+    navigator.clipboard.writeText(window.location.href);
+    alert("Quiz link copied to clipboard!");
+  }
+
   return (
     <>
-      <div className="mt-10 px-5 py-10 w-150 m-auto flex flex-col items-center text-gray-800 text-center gap-y-5 rounded-lg border-2 border-gray-800">
+      <div className="mt-10 px-5 py-10 w-[95%] md:w-[80%] m-auto flex flex-col items-center text-gray-800 text-center gap-y-5 rounded-lg border-2 border-gray-800">
         {index === 0 && (
           <>
             <div className="flex flex-col gap-y-2">
@@ -137,7 +142,7 @@ function QuizPage({
               Question #{index}:<br />
               {quiz.questions[index - 1].question}
             </h2>
-            <div className="flex gap-x-5 mb-10">
+            <div className="flex flex-col sm:flex-row gap-x-5 gap-y-10 mb-10">
               <Option
                 selected={selected}
                 index={index}
@@ -185,6 +190,7 @@ function QuizPage({
             </div>
             <div className="flex gap-x-5 justify-center">
               <Btn text="Back" onclick={() => setIndex((prev) => prev - 1)} />
+              <Btn text="Share" onclick={handleShare} primary />
               <Btn text="Go home" link="/" primary />
             </div>
           </div>
@@ -197,7 +203,7 @@ function QuizPage({
             setComment={setComment}
             handleComment={handleComment}
           />
-          <div className="mt-5 mb-10 w-150 m-auto flex flex-col gap-y-5">
+          <div className="mt-5 mb-10 w-[95%] md:w-[80%] m-auto flex flex-col gap-y-5">
             <h2 className="text-black font-bold text-xl">
               Comment{quiz.comments.length === 1 ? "" : "s"} (
               {quiz.comments.length})

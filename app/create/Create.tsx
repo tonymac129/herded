@@ -73,7 +73,7 @@ function Create({ createQuiz, user }: CreateProps) {
       {index === 0 && <Info quiz={quiz} setQuiz={setQuiz} />}
       {index === 1 && <Quiz quiz={quiz} setQuiz={setQuiz} />}
       {index === 2 && <Submit quiz={quiz} setQuiz={setQuiz} error={error} />}
-      <div className="w-150 m-auto flex gap-x-5 justify-center">
+      <div className="w-[95%] md:w-[80%] m-auto flex gap-x-5 justify-center">
         {index !== 0 && (
           <Btn text="Back" onclick={() => setIndex((prev) => prev - 1)} />
         )}

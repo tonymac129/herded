@@ -32,7 +32,7 @@ function QuizSearch({ quizzes }: { quizzes: QuizType[] }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label className="flex flex-col gap-y-1 font-bold text-xl w-[30%] m-auto">
+        <label className="flex flex-col gap-y-1 font-bold text-xl w-[80%] md:w-[30%] m-auto">
           <div className="flex items-center relative">Search quizzes</div>
           <div className="relative flex items-center w-full font-normal">
             <input

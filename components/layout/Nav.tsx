@@ -13,18 +13,24 @@ async function Nav() {
   return (
     <div className="sticky top-2 z-10">
       <nav
-        className="border-2 border-gray-800 rounded-lg bg-gray-200 max-w-280 w-[80%] m-auto py-2 relative flex justify-center
+        className="border-2 border-gray-800 rounded-lg bg-gray-200 max-w-280 w-[95%] lg:w-[80%] m-auto py-2 relative flex justify-center
       items-center"
       >
         <Link
           href="/"
-          className="text-2xl font-bold absolute left-10 flex gap-x-3 items-center"
+          className="text-2xl font-bold absolute left-1 sm:left-3 md:left-10 flex gap-x-3 items-center"
         >
-          <Image src="/logo.png" alt="Logo" width={55} height={55} />
-          Herded
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={55}
+            height={55}
+            className="w-9 sm:w-13"
+          />
+          <span className="hidden md:block">Herded</span>
         </Link>
-        <div className="flex gap-x-3">
-          <Link href="/" className={navLinkStyles}>
+        <div className="flex gap-x-0 md:gap-x-3">
+          <Link href="/" className={navLinkStyles + " hidden sm:block"}>
             Home
           </Link>
           <Link href="/quizzes" className={navLinkStyles}>
@@ -35,7 +41,7 @@ async function Nav() {
           </Link>
         </div>
         {session?.user ? (
-          <div className="flex gap-x-3 absolute right-10">
+          <div className="flex gap-x-0 sm:gap-x-3 absolute right-1 sm:right-3 md:right-10">
             <Link
               href="/profile"
               className={navLinkStyles + " flex items-center gap-x-2"}
@@ -47,12 +53,12 @@ async function Nav() {
                 height={35}
                 className="rounded-full border-2 border-gray-800"
               />{" "}
-              {session.user.name}
+              <span className="hidden md:block">{session.user.name}</span>
             </Link>
             <Btn text="Create" link="/create" primary />
           </div>
         ) : (
-          <div className="flex gap-x-3 absolute right-10">
+          <div className="flex gap-x-3 absolute right-1 sm:right-3 md:right-10">
             <Btn text="Sign in" link="/signin" primary />
           </div>
         )}

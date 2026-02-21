@@ -18,7 +18,7 @@ function Btn({ text, link, primary, onclick }: BtnProps) {
           whileHover={{ y: -3, scale: 1.06 }}
           whileTap={{ y: -1, scale: 1.03 }}
           transition={{ duration: 0.4, type: "spring" }}
-          className={`w-fit rounded-lg cursor-pointer border-2 border-gray-800 px-5 py-2 text-lg font-bold
+          className={`w-fit rounded-lg cursor-pointer border-2 border-gray-800 px-2 md:px-5 py-2 text-base md:text-lg font-bold
         ${primary ? "bg-green-400" : "bg-transparent"}`}
           onClick={onclick}
         >
@@ -30,7 +30,7 @@ function Btn({ text, link, primary, onclick }: BtnProps) {
             whileHover={{ y: -3, scale: 1.06 }}
             whileTap={{ y: -1, scale: 1.03 }}
             transition={{ duration: 0.4, type: "spring" }}
-            className={`w-fit rounded-lg cursor-pointer border-2 border-gray-800 px-5 py-2 text-lg font-bold
+            className={`w-fit rounded-lg cursor-pointer border-2 border-gray-800 px-2 md:px-5 py-2 text-base md:text-lg font-bold
         ${primary ? "bg-green-400" : "bg-transparent"}`}
           >
             {text}

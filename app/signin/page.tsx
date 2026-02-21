@@ -40,7 +40,7 @@ async function Page() {
       <MdWavingHand size={40} />
       <h2 className="text-2xl font-bold text-black">Welcome back</h2>
       <p className="mb-5 text-center">
-        Sign in to Herded with one of these options
+        Sign in to Herded to create your own quizzes
       </p>
       <SigninBtn provider="Google">
         <FcGoogle size={30} />

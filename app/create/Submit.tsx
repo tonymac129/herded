@@ -22,7 +22,7 @@ function Submit({ quiz, setQuiz, error }: SubmitProps) {
   }
 
   return (
-    <div className="py-10 w-150 m-auto flex flex-col gap-y-5">
+    <div className="py-10 w-[95%] md:w-[80%] m-auto flex flex-col gap-y-5">
       <h2 className="text-2xl font-bold text-center mb-3">
         3. Publish and share your quiz
       </h2>

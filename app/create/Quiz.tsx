@@ -15,7 +15,7 @@ type QuizProps = {
 
 function Quiz({ quiz, setQuiz }: QuizProps) {
   return (
-    <div className="py-10 w-150 m-auto flex flex-col gap-y-5">
+    <div className="py-10 w-[95%] md:w-[80%] m-auto flex flex-col gap-y-5">
       <h2 className="text-2xl font-bold text-center mb-3">
         2. Add some fun questions to your quiz
       </h2>

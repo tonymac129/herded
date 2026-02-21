@@ -13,7 +13,7 @@ function CommentSection({
   handleComment,
 }: CommentSectionProps) {
   return (
-    <div className="my-5 px-5 py-3 w-150 m-auto flex flex-col text-gray-800 text-center gap-y-3 rounded-lg border-2 border-gray-800">
+    <div className="my-5 px-5 py-3 w-[95%] md:w-[80%] m-auto flex flex-col text-gray-800 text-center gap-y-3 rounded-lg border-2 border-gray-800">
       <label className="flex flex-col gap-y-1 w-full font-bold text-xl text-left">
         Commenting as
         <input

@@ -48,7 +48,7 @@ async function Page() {
   const existingUser = await User.findOne({ email: session.user.email });
 
   return (
-    <div className="my-10 flex gap-x-10">
+    <div className="my-10 flex flex-col md:flex-row gap-10">
       <div className="rounded-lg border-2 border-gray-800 text-gray-800 flex flex-col flex-1 px-10 py-5 gap-y-5">
         <Image
           src={session.user.image!}
