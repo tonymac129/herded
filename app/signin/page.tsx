@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import SigninBtn from "./SigninBtn";
@@ -5,6 +6,28 @@ import { redirect } from "next/navigation";
 import { MdWavingHand } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+
+export const metadata: Metadata = {
+  title: "Sign in to Herded",
+  description:
+    "Herded is a would you rather quiz platform where you can create custom interactive would you rather quizzes or take fun public quizzes other people created!",
+  authors: [{ name: "TonyMac129", url: "https://tonymac.net" }],
+  openGraph: {
+    title: "Sign in | Herded",
+    description:
+      "Herded is a would you rather quiz platform where you can create custom interactive would you rather quizzes or take fun public quizzes other people created!",
+    url: "https://herded.vercel.app/signin",
+    siteName: "Herded",
+    images: [
+      {
+        url: "/logo.png",
+        width: 150,
+        height: 150,
+      },
+    ],
+    type: "website",
+  },
+};
 
 async function Page() {
   const session = await getServerSession(authOptions);

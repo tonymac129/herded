@@ -13,6 +13,22 @@ export const metadata: Metadata = {
   title: "Welcome to Herded",
   description:
     "Herded is a would you rather quiz platform where you can create custom interactive would you rather quizzes or take fun public quizzes other people created!",
+  authors: [{ name: "TonyMac129", url: "https://tonymac.net" }],
+  openGraph: {
+    title: "Home | Herded",
+    description:
+      "Herded is a would you rather quiz platform where you can create custom interactive would you rather quizzes or take fun public quizzes other people created!",
+    url: "https://herded.vercel.app",
+    siteName: "Herded",
+    images: [
+      {
+        url: "/logo.png",
+        width: 150,
+        height: 150,
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({

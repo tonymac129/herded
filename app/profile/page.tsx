@@ -1,4 +1,5 @@
 import type { QuizType } from "@/types/Quiz";
+import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
@@ -11,6 +12,28 @@ import DeleteBtn from "./DeleteBtn";
 import QuizCard from "@/components/ui/QuizCard";
 import Btn from "@/components/ui/Btn";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "Herded User Profile",
+  description:
+    "This is your private personal profile on Herded where you can see and manage your own quizzes",
+  authors: [{ name: "TonyMac129", url: "https://tonymac.net" }],
+  openGraph: {
+    title: "Profile | Herded",
+    description:
+      "This is your private personal profile on Herded where you can see and manage your own quizzes",
+    url: "https://herded.vercel.app/profile",
+    siteName: "Herded",
+    images: [
+      {
+        url: "/logo.png",
+        width: 150,
+        height: 150,
+      },
+    ],
+    type: "website",
+  },
+};
 
 async function Page() {
   const session = await getServerSession(authOptions);

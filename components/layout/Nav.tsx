@@ -16,7 +16,11 @@ async function Nav() {
         className="border-2 border-gray-800 rounded-lg bg-gray-200 max-w-280 w-[80%] m-auto py-2 relative flex justify-center
       items-center"
       >
-        <Link href="/" className="text-2xl font-bold absolute left-10">
+        <Link
+          href="/"
+          className="text-2xl font-bold absolute left-10 flex gap-x-3 items-center"
+        >
+          <Image src="/logo.png" alt="Logo" width={55} height={55} />
           Herded
         </Link>
         <div className="flex gap-x-3">
